@@ -1,0 +1,2392 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>abhi_webverse | Webverse Creator | Premium Web Solutions</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌐</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        /* Global Styles */
+        html {
+            width: 100%;
+            scroll-behavior: smooth;
+        }
+        
+        :root {
+            --bg-primary: #020617;
+            --bg-secondary: #0f172a;
+            --text-primary: #f1f5f9;
+            --text-secondary: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+        }
+
+        *, *::before, *::after {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box !important;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            width: 100%;
+        }
+        
+        /* Container styles */
+        .container, .max-w, [class*="max-w-"] {
+            width: 100%;
+        }
+
+        /* Mobile-optimized touch targets */
+        @media (max-width: 768px) {
+            button, a, [role="button"] {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Reduce animations on mobile for performance */
+            .glow-blob {
+                animation-duration: 6s;
+                opacity: 0.5;
+            }
+            
+            /* Improve readability on small screens */
+            p, .text-sm {
+                line-height: 1.7;
+            }
+            
+            /* Optimize heavy animations for mobile */
+            .card-hover:hover {
+                transform: translateY(-2px);
+            }
+            
+            /* Reduce blur effects on mobile */
+            .glass {
+                backdrop-filter: blur(8px);
+            }
+            
+            /* Improve text contrast on small screens */
+            .text-slate-400 {
+                color: #94a3b8;
+            }
+            
+            /* Ensure proper spacing on mobile */
+            .space-y-4 > * + * {
+                margin-top: 1rem;
+            }
+            
+            .space-y-6 > * + * {
+                margin-top: 1.5rem;
+            }
+        }
+
+        /* Extra small mobile devices */
+        @media (max-width: 480px) {
+            /* Further reduce spacing and sizes */
+            .text-3xl {
+                font-size: 1.75rem;
+                line-height: 2rem;
+            }
+            
+            .text-4xl {
+                font-size: 2rem;
+                line-height: 2.25rem;
+            }
+            
+            .text-5xl {
+                font-size: 2.5rem;
+                line-height: 2.75rem;
+            }
+            
+            /* Optimize padding for very small screens */
+            .p-6 {
+                padding: 1rem;
+            }
+            
+            .p-8 {
+                padding: 1.25rem;
+            }
+            
+        }
+
+        /* Performance optimization for mobile */
+        @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Mobile button improvements */
+        @media (max-width: 768px) {
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                min-height: 52px;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+            
+            /* Prevent text overflow on small screens */
+            h1, h2, h3, h4, h5, h6 {
+                word-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            /* Ensure cards don't overflow */
+            .glass {
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+        /* Responsive container improvements */
+        .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl {
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+        
+        [data-theme="light"] body {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #f3f4f6 100%);
+        }
+        
+        h1, h2, h3, .font-poppins { 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0;
+            line-height: 1.2;
+        }
+        
+        img, video {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        button, a {
+            touch-action: manipulation;
+        }
+        
+        .glass {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        [data-theme="light"] .glass {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.12), 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+        }
+
+        .glass-navbar {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        [data-theme="light"] .glass-navbar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(229, 231, 235, 1);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.3), rgba(255, 255, 255, 0)),
+                        radial-gradient(ellipse 80% 70% at 90% 40%, rgba(59, 130, 246, 0.15), rgba(255, 255, 255, 0)),
+                        radial-gradient(ellipse 100% 90% at 50% 100%, rgba(6, 182, 212, 0.1), rgba(255, 255, 255, 0)),
+                        linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        [data-theme="light"] .hero-gradient {
+            background: radial-gradient(ellipse 120% 80% at 50% -10%, rgba(37, 99, 235, 0.06), rgba(255, 255, 255, 0)),
+                        radial-gradient(ellipse 90% 70% at 80% 30%, rgba(59, 130, 246, 0.04), rgba(255, 255, 255, 0)),
+                        radial-gradient(ellipse 100% 90% at 30% 70%, rgba(139, 92, 246, 0.03), rgba(255, 255, 255, 0)),
+                        linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%, 0% 50%, 0% 50%, 0% 0%; }
+            50% { background-position: 100% 50%, 100% 50%, 100% 50%, 0% 0%; }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        @keyframes scaleIn {
+            from { 
+                opacity: 0; 
+                transform: scale(0.8); 
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1); 
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #8b5cf6 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Radial Gradient Background */
+        .bg-gradient-radial {
+            background: radial-gradient(ellipse at center, var(--tw-gradient-stops));
+        }
+
+        /* Cursor Follower - Disabled for performance */
+        .cursor-follower {
+            display: none;
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan), var(--accent-purple));
+            z-index: 1000;
+            transition: width 0.1s ease;
+            will-change: width;
+            transform: translateZ(0);
+        }
+
+        /* Performance Optimizations */
+        .floating-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.5;
+        }
+
+        /* Noise Texture Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: 1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
+        }
+
+        /* Floating Blobs */
+        .floating-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.5;
+        }
+
+        .floating-blob:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-blob:nth-child(2) {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(45deg, #06b6d4, #3b82f6);
+            top: 60%;
+            right: 20%;
+            animation-delay: -5s;
+        }
+
+        .floating-blob:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #8b5cf6, #ec4899);
+            bottom: 30%;
+            left: 30%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float-blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -30px) scale(1.1); }
+            50% { transform: translate(-20px, 20px) scale(0.9); }
+            75% { transform: translate(20px, 30px) scale(1.05); }
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+
+        [data-theme="light"] .btn-primary {
+            background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #3b82f6 100%);
+            box-shadow: 0 10px 25px rgba(29, 78, 216, 0.3), 0 4px 12px rgba(37, 99, 235, 0.2);
+            color: white;
+            border: 1px solid rgba(29, 78, 216, 0.1);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.6);
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        [data-theme="light"] .btn-primary:hover {
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #2563eb 100%);
+            box-shadow: 0 20px 40px rgba(29, 78, 216, 0.4), 0 10px 25px rgba(37, 99, 235, 0.25);
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid rgba(148, 163, 184, 0.2);
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+
+        [data-theme="light"] .btn-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(209, 213, 219, 1);
+            color: var(--text-primary);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+        }
+
+        [data-theme="light"] .btn-secondary:hover {
+            background: rgba(243, 244, 246, 1);
+            border-color: rgba(156, 163, 175, 1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Card Hover Effects */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(59, 130, 246, 0.15);
+        }
+
+        [data-theme="light"] .card-hover:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-glow:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+
+        [data-theme="light"] .card-glow:hover {
+            border-color: rgba(37, 99, 235, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08), 0 0 20px rgba(37, 99, 235, 0.12), 0 0 0 1px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Video Styles */
+        video {
+            outline: none;
+            border-radius: 0.75rem;
+        }
+
+        video::-webkit-media-controls-panel {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        video::-webkit-media-controls-play-button,
+        video::-webkit-media-controls-mute-button,
+        video::-webkit-media-controls-fullscreen-button {
+            filter: brightness(1.2);
+        }
+
+        /* Disable hover effects for video cards */
+        .video-card-stable {
+            transition: none !important;
+            transform: none !important;
+        }
+
+        .video-card-stable:hover {
+            transform: none !important;
+            box-shadow: none !important;
+            border-color: inherit !important;
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+
+        .faq-content {
+            max-height: 0;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-content.open {
+            max-height: 200px;
+            padding: 1rem 0;
+        }
+
+        /* Stats Counter Animation */
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Process Timeline */
+        .process-step {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -50px;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.8), rgba(59, 130, 246, 0.2));
+            transform: translateY(-50%);
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        /* Floating CTA */
+        .floating-cta {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            z-index: 100;
+        }
+        
+        @media (min-width: 768px) {
+            .floating-cta {
+                bottom: 24px;
+                right: 24px;
+            }
+        }
+
+        .floating-cta .tooltip {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(5px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            margin-bottom: 8px;
+        }
+
+        .floating-cta:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .floating-cta .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 16px;
+            border: 4px solid transparent;
+            border-top-color: rgba(15, 23, 42, 0.9);
+        }
+
+        /* Contact Button Animations - Disabled for performance */
+        .contact-btn-whatsapp {
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.25);
+        }
+
+        .contact-btn-call {
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
+        }
+
+        @keyframes whatsapp-glow {
+            0%, 100% { 
+                box-shadow: 0 8px 25px rgba(34, 197, 94, 0.25);
+            }
+            50% { 
+                box-shadow: 0 12px 35px rgba(34, 197, 94, 0.4);
+            }
+        }
+
+        @keyframes call-glow {
+            0%, 100% { 
+                box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
+            }
+            50% { 
+                box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+            }
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: rgba(148, 163, 184, 0.3);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle.active {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+        }
+
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-toggle.active::after {
+            transform: translateX(24px);
+        }
+
+        /* Section Reveal Animation */
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glow-blob {
+            filter: blur(100px);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .mockup-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            display: block;
+            visibility: visible;
+            opacity: 1;
+            max-width: 100%;
+            height: auto;
+        }
+
+        [data-theme="light"] .mockup-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.9);
+        }
+
+        /* Ensure mockup content is visible */
+        .mockup-card > * {
+            display: block;
+            visibility: visible;
+        }
+
+        /* Hero section mockup visibility */
+        .hero-gradient .floating,
+        .hero-gradient .mockup-card {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        /* Light Mode Background Enhancements */
+        [data-theme="light"] .floating-blob:nth-child(1) {
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.08), rgba(139, 92, 246, 0.06));
+        }
+
+        [data-theme="light"] .floating-blob:nth-child(2) {
+            background: linear-gradient(45deg, rgba(6, 182, 212, 0.06), rgba(37, 99, 235, 0.04));
+        }
+
+        [data-theme="light"] .floating-blob:nth-child(3) {
+            background: linear-gradient(45deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.03));
+        }
+
+        /* Light Mode Text Colors */
+        [data-theme="light"] h1,
+        [data-theme="light"] h2, 
+        [data-theme="light"] h3,
+        [data-theme="light"] .text-white {
+            color: #0f172a !important;
+        }
+
+        [data-theme="light"] .text-slate-400,
+        [data-theme="light"] .text-slate-300 {
+            color: #64748b !important;
+        }
+
+        [data-theme="light"] .text-slate-500 {
+            color: #475569 !important;
+        }
+
+        /* Light Mode Section Backgrounds */
+        [data-theme="light"] .bg-slate-900\/30,
+        [data-theme="light"] .bg-slate-900\/50 {
+            background: rgba(243, 244, 246, 0.5) !important;
+        }
+
+        /* Light Mode Borders */
+        [data-theme="light"] .border-white\/5,
+        [data-theme="light"] .border-t {
+            border-color: rgba(229, 231, 235, 0.6) !important;
+        }
+
+        /* Dark Mode Toggle Light Style */
+        [data-theme="light"] .theme-toggle {
+            background: rgba(156, 163, 175, 0.3);
+            border: 1px solid rgba(209, 213, 219, 0.5);
+        }
+
+        [data-theme="light"] .theme-toggle.active {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .fade-in-delay {
+            animation: fadeInUp 0.8s ease-out 0.3s forwards;
+            opacity: 0;
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        .fade-in-delay-2 {
+            animation: fadeInUp 0.8s ease-out 0.6s forwards;
+            opacity: 0;
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating {
+            display: block;
+            visibility: visible;
+            opacity: 1;
+            max-width: 100%;
+            height: auto;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Light Mode Background Enhancements */
+        [data-theme="light"] .floating-blob:nth-child(1) {
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.08), rgba(139, 92, 246, 0.06));
+        }
+
+        [data-theme="light"] .floating-blob:nth-child(2) {
+            background: linear-gradient(45deg, rgba(6, 182, 212, 0.06), rgba(37, 99, 235, 0.04));
+        }
+
+        [data-theme="light"] .floating-blob:nth-child(3) {
+            background: linear-gradient(45deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.03));
+        }
+
+        /* Light Mode Text Colors */
+        [data-theme="light"] h1,
+        [data-theme="light"] h2, 
+        [data-theme="light"] h3,
+        [data-theme="light"] .text-white {
+            color: #0f172a !important;
+        }
+
+        [data-theme="light"] .text-slate-400,
+        [data-theme="light"] .text-slate-300 {
+            color: #64748b !important;
+        }
+
+        [data-theme="light"] .text-slate-500 {
+            color: #475569 !important;
+        }
+
+        /* Light Mode Section Backgrounds */
+        [data-theme="light"] .bg-slate-900\/30,
+        [data-theme="light"] .bg-slate-900\/50 {
+            background: rgba(243, 244, 246, 0.5) !important;
+        }
+
+        /* Light Mode Borders */
+        [data-theme="light"] .border-white\/5,
+        [data-theme="light"] .border-t {
+            border-color: rgba(229, 231, 235, 0.6) !important;
+        }
+
+        /* Dark Mode Toggle Light Style */
+        [data-theme="light"] .theme-toggle {
+            background: rgba(156, 163, 175, 0.3);
+            border: 1px solid rgba(209, 213, 219, 0.5);
+        }
+
+        [data-theme="light"] .theme-toggle.active {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .process-step::after {
+                display: none !important;
+            }
+            
+            .floating-cta {
+                bottom: 20px !important;
+                right: 20px !important;
+            }
+            
+            .cursor-follower {
+                display: none !important;
+            }
+
+            .text-5xl, .lg\\:text-5xl {
+                font-size: 2.25rem !important;
+                line-height: 1.2 !important;
+            }
+
+            .text-7xl, .lg\\:text-7xl, .text-6xl, .lg\\:text-6xl {
+                font-size: 2.5rem !important;
+                line-height: 1.1 !important;
+            }
+
+            .px-10 {
+                padding-left: 1.5rem !important;
+                padding-right: 1.5rem !important;
+            }
+
+            .py-24, .lg\\:py-24 {
+                padding-top: 4rem !important;
+                padding-bottom: 4rem !important;
+            }
+
+            .py-32 {
+                padding-top: 5rem !important;
+                padding-bottom: 5rem !important;
+            }
+
+            .floating-blob {
+                display: none !important;
+            }
+            
+            .glass-navbar {
+                backdrop-filter: blur(10px) !important;
+            }
+            
+            /* Mobile Button Improvements */
+            .btn-primary, .btn-secondary {
+                min-height: 48px;
+            }
+
+            .hidden\\.md\\:flex, .md\\:flex {
+                display: none !important;
+            }
+        }
+
+        /* Premium Apple-Style Light Mode Enhancements */
+        [data-theme="light"] h1 {
+            font-weight: 800 !important;
+            line-height: 1.1 !important;
+            color: #0f172a !important;
+        }
+
+        [data-theme="light"] h2 {
+            font-weight: 700 !important;
+            line-height: 1.2 !important;
+            color: #0f172a !important;
+        }
+
+        [data-theme="light"] h3 {
+            font-weight: 600 !important;
+            color: #0f172a !important;
+        }
+
+        [data-theme="light"] p {
+            line-height: 1.7 !important;
+            color: #64748b !important;
+        }
+
+        /* Enhanced Section Backgrounds */
+        [data-theme="light"] .py-24 {
+            padding-top: 6rem !important;
+            padding-bottom: 6rem !important;
+        }
+
+        [data-theme="light"] .bg-slate-900\/30 {
+            background: #f8fafc !important;
+            border-top: 1px solid rgba(229, 231, 235, 0.8) !important;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8) !important;
+        }
+
+        [data-theme="light"] .bg-slate-900\/50 {
+            background: linear-gradient(135deg, #f1f5f9 0%, #f8fafc 100%) !important;
+        }
+
+        /* Premium CTA Section */
+        [data-theme="light"] .bg-gradient-to-br {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%) !important;
+            box-shadow: 0 25px 50px rgba(30, 64, 175, 0.25) !important;
+        }
+
+        /* Enhanced WhatsApp Button */
+        [data-theme="light"] .floating-cta a {
+            background: rgba(248, 250, 252, 0.95) !important;
+            border: 1px solid rgba(21, 128, 61, 0.2) !important;
+            color: #15803d !important;
+            backdrop-filter: blur(12px);
+        }
+
+        [data-theme="light"] .floating-cta a:hover {
+            background: rgba(240, 253, 244, 0.98) !important;
+            border-color: rgba(21, 128, 61, 0.4) !important;
+            color: #166534 !important;
+            box-shadow: 0 10px 25px rgba(21, 128, 61, 0.15) !important;
+        }
+
+        [data-theme="light"] .floating-cta .tooltip {
+            background: rgba(248, 250, 252, 0.95) !important;
+            color: #0f172a !important;
+            border: 1px solid rgba(229, 231, 235, 0.8) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        [data-theme="light"] .floating-cta .tooltip::after {
+            border-top-color: rgba(248, 250, 252, 0.95) !important;
+        }
+
+        /* Premium Contact Section Enhancements */
+        .premium-contact-bg {
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.95) 0%, 
+                rgba(30, 41, 59, 0.8) 50%, 
+                rgba(15, 23, 42, 0.95) 100%);
+        }
+
+        [data-theme="light"] .premium-contact-bg {
+            background: linear-gradient(135deg, 
+                rgba(248, 250, 252, 0.95) 0%, 
+                rgba(241, 245, 249, 0.9) 50%, 
+                rgba(248, 250, 252, 0.95) 100%);
+        }
+
+        /* Trust Badge Styling */
+        .trust-badge {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(8px);
+        }
+
+        [data-theme="light"] .trust-badge {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+        }
+
+        /* Availability Status */
+        .availability-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+        }
+
+        /* Social Media Glow Effects */
+        .social-icon {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .social-icon:hover {
+            filter: drop-shadow(0 0 8px currentColor);
+            transform: translateY(-2px);
+        }
+
+        /* FAQ Accordion Enhancements */
+        .mini-faq {
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        [data-theme="light"] .mini-faq {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+        }
+
+        /* Mobile Responsive Floating CTA */
+        @media (max-width: 768px) {
+            .floating-cta {
+                bottom: 20px !important;
+                right: 20px !important;
+            }
+        }
+
+        /* Premium Text Colors Override */
+        [data-theme="light"] .text-slate-500 {
+            color: #64748b !important;
+        }
+
+        [data-theme="light"] .text-blue-100 {
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        /* Navbar Enhancement */
+        [data-theme="light"] .glass-navbar .text-slate-200 {
+            color: #64748b !important;
+        }
+
+        [data-theme="light"] .hover\\:text-blue-500:hover {
+            color: #3b82f6 !important;
+        }
+
+        /* Additional Premium Styling for Light Mode */
+        [data-theme="light"] .text-cyan-300 {
+            color: #06b6d4 !important;
+        }
+
+        [data-theme="light"] .border-y {
+            border-top: 1px solid rgba(229, 231, 235, 1) !important;
+            border-bottom: 1px solid rgba(229, 231, 235, 1) !important;
+        }
+
+        [data-theme="light"] .border-t {
+            border-top: 1px solid rgba(229, 231, 235, 1) !important;
+        }
+
+        [data-theme="light"] .text-slate-700 {
+            color: #475569 !important;
+        }
+
+        [data-theme="light"] .text-slate-900 {
+            color: #0f172a !important;
+        }
+
+        /* Enhanced Card Styling */
+        [data-theme="light"] .glass {
+            background: rgba(255, 255, 255, 0.95) !important;
+            border: 1px solid rgba(229, 231, 235, 1) !important;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        [data-theme="light"] .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        [data-theme="light"] .card-hover:hover {
+            transform: translateY(-8px) scale(1.02) !important;
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08) !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200 antialiased" data-theme="dark">
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+    
+    <!-- Cursor Follower -->
+    <div class="cursor-follower"></div>
+    
+    <!-- Noise Texture Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Floating Background Blobs -->
+    <div class="floating-blob"></div>
+    <div class="floating-blob"></div>
+    <div class="floating-blob"></div>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // Custom Hooks
+        const useScrollProgress = () => {
+            const [scrollProgress, setScrollProgress] = useState(0);
+
+            useEffect(() => {
+                let ticking = false;
+
+                const updateScrollProgress = () => {
+                    const scrollPx = document.documentElement.scrollTop;
+                    const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    const scrolled = scrollPx / winHeightPx * 100;
+                    setScrollProgress(scrolled);
+                    ticking = false;
+                };
+
+                const requestTick = () => {
+                    if (!ticking) {
+                        requestAnimationFrame(updateScrollProgress);
+                        ticking = true;
+                    }
+                };
+
+                window.addEventListener('scroll', requestTick, { passive: true });
+                return () => window.removeEventListener('scroll', requestTick);
+            }, []);
+
+            return scrollProgress;
+        };
+
+        const useIntersectionObserver = (ref, threshold = 0.1) => {
+            const [isIntersecting, setIsIntersecting] = useState(false);
+
+            useEffect(() => {
+                if (!ref.current) return;
+
+                const observer = new IntersectionObserver(
+                    ([entry]) => setIsIntersecting(entry.isIntersecting),
+                    { threshold }
+                );
+
+                observer.observe(ref.current);
+                return () => observer.disconnect();
+            }, [ref, threshold]);
+
+            return isIntersecting;
+        };
+
+        const useCounter = (end, start = 0, duration = 2000) => {
+            const [count, setCount] = useState(start);
+            const [isActive, setIsActive] = useState(false);
+
+            useEffect(() => {
+                if (!isActive || end === start) return;
+
+                const increment = (end - start) / (duration / 16);
+                let current = start;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                        setCount(end);
+                        clearInterval(timer);
+                        return;
+                    }
+                    setCount(current);
+                }, 16);
+
+                return () => clearInterval(timer);
+            }, [isActive, end, start, duration]);
+
+            const startCounter = () => setIsActive(true);
+            const resetCounter = () => {
+                setCount(start);
+                setIsActive(false);
+            };
+
+            return [Math.floor(count), startCounter, resetCounter];
+        };
+
+        // Global Effects Component
+        const GlobalEffects = () => {
+            const scrollProgress = useScrollProgress();
+            const [isDarkMode, setIsDarkMode] = useState(true);
+
+            useEffect(() => {
+                const progressBar = document.querySelector('.scroll-progress');
+                if (progressBar) {
+                    progressBar.style.width = `${scrollProgress}%`;
+                }
+            }, [scrollProgress]);
+
+            useEffect(() => {
+                const root = document.documentElement;
+                root.dataset.theme = isDarkMode ? 'dark' : 'light';
+                document.body.dataset.theme = isDarkMode ? 'dark' : 'light';
+                document.body.className = isDarkMode 
+                    ? 'bg-slate-950 text-slate-200 antialiased'
+                    : 'bg-slate-50 text-slate-900 antialiased';
+            }, [isDarkMode]);
+
+            return { isDarkMode, setIsDarkMode };
+        };
+
+        // Section Reveal Wrapper
+        const RevealSection = ({ children, delay = 0 }) => {
+            const sectionRef = useRef();
+            const isVisible = useIntersectionObserver(sectionRef);
+
+            return (
+                <div 
+                    ref={sectionRef}
+                    className={`section-reveal ${isVisible ? 'visible' : ''}`}
+                    style={{ transitionDelay: `${delay}ms` }}
+                >
+                    {children}
+                </div>
+            );
+        };
+
+        // Star Rating Component
+        const StarRating = () => (
+            <div className="flex gap-1 mb-4 text-yellow-500">
+                {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                ))}
+            </div>
+        );
+
+        // Enhanced Navbar Component with Dark Mode Toggle
+        const Navbar = ({ isDarkMode, setIsDarkMode }) => {
+            const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+            
+            return (
+                <nav className="fixed top-0 left-0 right-0 w-full z-50 glass-navbar">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 md:h-20 flex justify-between items-center overflow-hidden">
+                        {/* Logo with Icon */}
+                        <div className="flex items-center gap-3">
+                            {/* Abstract A/AW Icon */}
+                            <div className="relative">
+                                <svg width="40" height="40" viewBox="0 0 40 40" className="md:w-11 md:h-11">
+                                    <defs>
+                                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stopColor="#3b82f6" />
+                                            <stop offset="50%" stopColor="#06b6d4" />
+                                            <stop offset="100%" stopColor="#8b5cf6" />
+                                        </linearGradient>
+                                        <filter id="glow">
+                                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                            <feMerge> 
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/> 
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+                                    
+                                    {/* Abstract A shape with geometric elements */}
+                                    <g fill="url(#logoGradient)" filter="url(#glow)">
+                                        {/* Main A triangle */}
+                                        <path d="M20 4 L32 28 L28 28 L25.5 22 L14.5 22 L12 28 L8 28 Z" opacity="0.9"/>
+                                        {/* A crossbar */}
+                                        <rect x="16" y="18" width="8" height="2" rx="1"/>
+                                        {/* Abstract W elements - stylized as connected diamonds */}
+                                        <path d="M6 32 L10 24 L14 32 L10 36 Z" opacity="0.7"/>
+                                        <path d="M26 32 L30 24 L34 32 L30 36 Z" opacity="0.7"/>
+                                        {/* Connecting elements */}
+                                        <circle cx="20" cy="30" r="1.5" opacity="0.8"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            
+                            {/* Brand Text */}
+                            <div className="flex flex-col">
+                                <div className={`text-xl md:text-2xl font-bold font-poppins tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                                    <span className="bg-gradient-to-r from-blue-500 via-cyan-500 to-purple-500 bg-clip-text text-transparent">abhi_webverse</span>
+                                </div>
+                                <div className={`text-xs ${isDarkMode ? 'text-slate-400' : 'text-slate-600'} font-medium tracking-wider hidden sm:block uppercase`}>
+                                    Webverse Creator
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {/* Desktop Menu */}
+                        <div className={`hidden md:flex gap-8 text-sm font-medium uppercase tracking-wider ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`}>
+                            <a href="#work" className="hover:text-blue-500 transition-colors">Work</a>
+                            <a href="#services" className="hover:text-blue-500 transition-colors">Services</a>
+                            <a href="#process" className="hover:text-blue-500 transition-colors">Process</a>
+                            <a href="#why" className="hover:text-blue-500 transition-colors">Why Me</a>
+                            <a href="#contact" className="hover:text-blue-500 transition-colors">Contact</a>
+                        </div>
+                        
+                        <div className="flex items-center gap-3 md:gap-4">
+                            <div 
+                                className={`theme-toggle ${isDarkMode ? 'active' : ''}`}
+                                onClick={() => setIsDarkMode(!isDarkMode)}
+                            ></div>
+                            
+                            {/* Mobile Menu Button */}
+                            <button 
+                                className={`md:hidden p-2 rounded-lg ${isDarkMode ? 'text-white hover:bg-slate-800' : 'text-slate-900 hover:bg-slate-100'} transition-colors`}
+                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                                aria-label="Toggle menu"
+                            >
+                                <div className="w-6 h-6 flex flex-col justify-center gap-1">
+                                    <span className={`block w-5 h-0.5 bg-current transform transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+                                    <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+                                    <span className={`block w-5 h-0.5 bg-current transform transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+                                </div>
+                            </button>
+                            
+                            <a href="#contact" className="hidden md:inline-block btn-primary px-6 py-3 rounded-full font-bold text-white transition-all text-base">
+                                Hire Me
+                            </a>
+                        </div>
+                    </div>
+                    
+                    {/* Mobile Menu */}
+                    <div className={`md:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+                        <div className={`flex flex-col px-4 py-6 border-t ${isDarkMode ? 'bg-slate-900/95 border-slate-800' : 'bg-slate-50/95 border-slate-200'} backdrop-blur-lg`}>
+                            <a href="#work" className={`py-3 px-2 text-center text-base font-medium uppercase tracking-wider ${isDarkMode ? 'text-slate-200 hover:text-blue-400' : 'text-slate-700 hover:text-blue-500'} transition-colors`} onClick={() => setIsMobileMenuOpen(false)}>Work</a>
+                            <a href="#services" className={`py-3 px-2 text-center text-base font-medium uppercase tracking-wider ${isDarkMode ? 'text-slate-200 hover:text-blue-400' : 'text-slate-700 hover:text-blue-500'} transition-colors`} onClick={() => setIsMobileMenuOpen(false)}>Services</a>
+                            <a href="#process" className={`py-3 px-2 text-center text-base font-medium uppercase tracking-wider ${isDarkMode ? 'text-slate-200 hover:text-blue-400' : 'text-slate-700 hover:text-blue-500'} transition-colors`} onClick={() => setIsMobileMenuOpen(false)}>Process</a>
+                            <a href="#why" className={`py-3 px-2 text-center text-base font-medium uppercase tracking-wider ${isDarkMode ? 'text-slate-200 hover:text-blue-400' : 'text-slate-700 hover:text-blue-500'} transition-colors`} onClick={() => setIsMobileMenuOpen(false)}>Why Me</a>
+                            <a href="#contact" className={`py-3 px-2 text-center text-base font-medium uppercase tracking-wider ${isDarkMode ? 'text-slate-200 hover:text-blue-400' : 'text-slate-700 hover:text-blue-500'} transition-colors`} onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+                            <a href="#contact" className="btn-primary mt-4 px-6 py-3 rounded-full font-bold text-white text-center" onClick={() => setIsMobileMenuOpen(false)}>
+                                Hire Me
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        // Stats Counter Section
+        const StatsSection = () => {
+            const sectionRef = useRef();
+            const isVisible = useIntersectionObserver(sectionRef);
+            
+            const [projectsCount, startProjects] = useCounter(50, 0, 2000);
+            const [satisfactionCount, startSatisfaction] = useCounter(100, 0, 2500);
+            const [deliveryCount, startDelivery] = useCounter(5, 0, 1500);
+
+            useEffect(() => {
+                if (isVisible) {
+                    startProjects();
+                    startSatisfaction();
+                    startDelivery();
+                }
+            }, [isVisible, startProjects, startSatisfaction, startDelivery]);
+
+            return (
+                <RevealSection>
+                    <section ref={sectionRef} className="py-24 bg-slate-900/30 px-6">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="text-center mb-16">
+                                <h2 className="text-4xl md:text-5xl font-bold text-white font-poppins mb-4">
+                                    Proven <span className="gradient-text">Results</span>
+                                </h2>
+                                <p className="text-slate-400 text-lg">Numbers that speak for themselves</p>
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                                <div className="glass p-6 lg:p-8 rounded-2xl text-center card-hover">
+                                    <div className="text-4xl lg:text-5xl font-bold text-white mb-4 stat-number font-poppins">
+                                        {projectsCount}+
+                                    </div>
+                                    <h3 className="text-lg lg:text-xl font-semibold text-white mb-2">Projects Completed</h3>
+                                    <p className="text-slate-400 text-sm lg:text-base">Successfully delivered premium websites</p>
+                                </div>
+                                <div className="glass p-6 lg:p-8 rounded-2xl text-center card-hover">
+                                    <div className="text-4xl lg:text-5xl font-bold text-white mb-4 stat-number font-poppins">
+                                        {satisfactionCount}%
+                                    </div>
+                                    <h3 className="text-lg lg:text-xl font-semibold text-white mb-2">Client Satisfaction</h3>
+                                    <p className="text-slate-400 text-sm lg:text-base">Happy clients who recommend our work</p>
+                                </div>
+                                <div className="glass p-6 lg:p-8 rounded-2xl text-center card-hover sm:col-span-2 lg:col-span-1">
+                                    <div className="text-4xl lg:text-5xl font-bold text-white mb-4 stat-number font-poppins">
+                                        {deliveryCount}
+                                    </div>
+                                    <h3 className="text-lg lg:text-xl font-semibold text-white mb-2">Day Delivery</h3>
+                                    <p className="text-slate-400 text-sm lg:text-base">Average project completion time</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </RevealSection>
+            );
+        };
+
+        // Process Section
+        const ProcessSection = () => (
+            <RevealSection>
+                <section id="process" className="py-16 md:py-24 px-4 sm:px-6">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-12 md:mb-20">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-poppins mb-4">
+                                My <span className="gradient-text">Process</span>
+                            </h2>
+                            <p className="text-slate-400 text-base md:text-lg">From idea to live website in 4 simple steps</p>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4">
+                            {[
+                                {
+                                    step: "01",
+                                    title: "Discover",
+                                    description: "Understanding your business goals, target audience, and requirements.",
+                                    icon: "🔍"
+                                },
+                                {
+                                    step: "02", 
+                                    title: "Design",
+                                    description: "Creating beautiful, user-friendly designs that convert visitors into customers.",
+                                    icon: "🎨"
+                                },
+                                {
+                                    step: "03",
+                                    title: "Develop", 
+                                    description: "Building fast, responsive websites using modern technologies and best practices.",
+                                    icon: "⚡"
+                                },
+                                {
+                                    step: "04",
+                                    title: "Deliver",
+                                    description: "Launching your website with full testing, optimization, and ongoing support.",
+                                    icon: "🚀"
+                                }
+                            ].map((item, index) => (
+                                <div key={index} className="process-step glass p-6 lg:p-8 rounded-2xl card-hover card-glow">
+                                    <div className="text-3xl lg:text-4xl mb-4 lg:mb-6">{item.icon}</div>
+                                    <div className="text-blue-400 font-bold text-xs lg:text-sm mb-2">{item.step}</div>
+                                    <h3 className="text-lg lg:text-xl font-bold text-white mb-3 lg:mb-4 font-poppins">{item.title}</h3>
+                                    <p className="text-slate-400 leading-relaxed text-sm lg:text-base">{item.description}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </RevealSection>
+        );
+
+        // FAQ Section
+        const FAQSection = () => {
+            const [openFAQ, setOpenFAQ] = useState(null);
+
+            const faqs = [
+                {
+                    question: "How long does it take to build a website?",
+                    answer: "Most projects are completed within 5-7 days. Complex websites may take up to 10 days. I provide regular updates throughout the process."
+                },
+                {
+                    question: "Do you provide ongoing support?",
+                    answer: "Yes! I provide 30 days of free support after launch, including bug fixes, minor updates, and technical assistance."
+                },
+                {
+                    question: "Will my website work on mobile devices?",
+                    answer: "Absolutely! All websites are built mobile-first and tested on various devices to ensure perfect performance everywhere."
+                },
+                {
+                    question: "What's included in the price?",
+                    answer: "Everything you need: design, development, hosting setup, SEO optimization, contact forms, and 30 days of support."
+                }
+            ];
+
+            return (
+                <RevealSection>
+                    <section className="py-24 bg-slate-900/30 px-6">
+                        <div className="max-w-4xl mx-auto">
+                            <div className="text-center mb-16">
+                                <h2 className="text-4xl md:text-5xl font-bold text-white font-poppins mb-4">
+                                    Frequently Asked <span className="gradient-text">Questions</span>
+                                </h2>
+                                <p className="text-slate-400 text-lg">Everything you need to know</p>
+                            </div>
+                            
+                            <div className="space-y-4">
+                                {faqs.map((faq, index) => (
+                                    <div key={index} className="glass rounded-xl card-hover">
+                                        <button
+                                            className="w-full p-6 text-left flex justify-between items-center"
+                                            onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
+                                        >
+                                            <h3 className="text-lg font-semibold text-white pr-4">{faq.question}</h3>
+                                            <div className="text-blue-400 text-2xl transition-transform duration-300" 
+                                                 style={{ transform: openFAQ === index ? 'rotate(45deg)' : 'rotate(0deg)' }}>
+                                                +
+                                            </div>
+                                        </button>
+                                        <div className={`faq-content ${openFAQ === index ? 'open' : ''}`}>
+                                            <div className="px-6 pb-6">
+                                                <p className="text-slate-400 leading-relaxed">{faq.answer}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+                </RevealSection>
+            );
+        };
+
+        // Floating WhatsApp CTA
+        const FloatingCTA = () => {
+            return (
+                <div className="floating-cta">
+                    <a 
+                        href="https://wa.me/919317529244" 
+                        className="relative h-10 w-10 md:h-12 md:w-12 bg-slate-900/80 backdrop-blur-sm border border-green-800/30 hover:border-green-700/50 text-green-400 hover:text-green-300 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center font-semibold transform hover:scale-105 transition-all duration-300 group"
+                        style={{ background: 'rgba(30, 41, 59, 0.85)' }}
+                        title="Chat on WhatsApp"
+                    >
+                        <span className="text-base md:text-lg">💬</span>
+                    </a>
+                </div>
+            );
+        };
+
+        // Website Mockup Component
+        const WebsiteMockup = () => (
+            <div className="relative floating w-full max-w-md mx-auto lg:ml-auto lg:mr-0">
+                <div className="mockup-card rounded-2xl p-4 sm:p-6 w-full aspect-[4/5] relative">
+                    {/* Browser Bar */}
+                    <div className="flex gap-2 mb-3 sm:mb-4">
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></div>
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="space-y-3 sm:space-y-4">
+                        <div className="h-3 sm:h-4 bg-gradient-to-r from-blue-400 to-cyan-300 rounded-full w-3/4"></div>
+                        <div className="h-2 sm:h-3 bg-slate-600 rounded w-full"></div>
+                        <div className="h-2 sm:h-3 bg-slate-600 rounded w-5/6"></div>
+                        
+                        <div className="grid grid-cols-2 gap-2 sm:gap-3 mt-4 sm:mt-6">
+                            <div className="h-16 sm:h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg"></div>
+                            <div className="h-16 sm:h-20 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg"></div>
+                        </div>
+                        
+                        <div className="space-y-2 mt-4 sm:mt-6">
+                            <div className="h-2 bg-slate-600 rounded w-full"></div>
+                            <div className="h-2 bg-slate-600 rounded w-4/5"></div>
+                            <div className="h-2 bg-slate-600 rounded w-3/5"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+
+        // Hero Section Component
+        const HeroSection = () => (
+            <section className="relative min-h-screen flex items-center py-16 md:pt-24 px-4 sm:px-6 hero-gradient">
+                {/* Background Blobs */}
+                <div className="absolute top-20 left-4 lg:left-10 w-64 lg:w-96 h-64 lg:h-96 bg-blue-500 rounded-full glow-blob"></div>
+                <div className="absolute top-40 right-4 lg:right-20 w-48 lg:w-80 h-48 lg:h-80 bg-purple-500 rounded-full glow-blob"></div>
+                <div className="absolute bottom-20 left-1/3 w-32 lg:w-64 h-32 lg:h-64 bg-cyan-400 rounded-full glow-blob"></div>
+
+                <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-center relative z-10">
+                    {/* Left Side - Text */}
+                    <div className="fade-in text-center lg:text-left space-y-6">
+                        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight font-poppins max-w-xl lg:max-w-3xl mx-auto lg:mx-0">
+                            <span className="block sm:inline">Let's Build</span>{" "}
+                            <span className="block sm:inline">Your{" "}</span>
+                            <span className="gradient-text block sm:inline">Online Presence</span>
+                        </h1>
+                        <p className="text-slate-400 text-base sm:text-lg lg:text-xl max-w-md lg:max-w-2xl font-light leading-relaxed mx-auto lg:mx-0">
+                            Building Real Web Projects • Learning • Creating • Sharing
+                        </p>
+                        <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:gap-6 fade-in-delay-2 justify-center lg:justify-start pt-2">
+                            <a href="#work" className="btn-primary px-8 sm:px-10 py-4 rounded-2xl font-bold text-base sm:text-lg text-white w-full sm:w-auto text-center min-h-[48px] flex items-center justify-center">
+                                View My Work
+                            </a>
+                            <a href="#contact" className="btn-secondary px-8 sm:px-10 py-4 text-white rounded-2xl font-bold text-base sm:text-lg w-full sm:w-auto text-center min-h-[48px] flex items-center justify-center">
+                                Get Free Consultation
+                            </a>
+                        </div>
+                    </div>
+                    
+                    {/* Right Side - Mockup */}
+                    <div className="flex justify-center lg:justify-end fade-in-delay mt-8 lg:mt-0">
+                        <WebsiteMockup />
+                    </div>
+                </div>
+            </section>
+        );
+
+        // Social Proof Section
+        const SocialProofSection = () => (
+            <RevealSection>
+                <section className="py-24 border-y border-white/5 bg-slate-900/50 relative">
+                    {/* Background Elements */}
+                    <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                        <div className="absolute top-20 right-4 lg:right-20 w-48 lg:w-64 h-48 lg:h-64 bg-blue-500/5 rounded-full blur-3xl"></div>
+                        <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
+                    </div>
+                    
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-poppins mb-4">
+                                Client <span className="gradient-text">Reviews</span>
+                            </h2>
+                            <p className="text-slate-400 text-base md:text-lg mb-2">Real feedback from real projects</p>
+                            <div className="inline-flex items-center gap-2 text-slate-500 text-sm">
+                                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span>Verified feedback from real client projects</span>
+                            </div>
+                        </div>
+                        
+                        {/* Mobile-First Grid - Single Column on Mobile */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+                            {[
+                                {
+                                    businessName: "SK Tour & Travels",
+                                    ownerName: "Sanjay Kumar",
+                                    location: "Himachal Pradesh",
+                                    projectType: "Taxi Booking Website",
+                                    businessIcon: "🚗",
+                                    rating: 5,
+                                    review: "Abhi ne hamari taxi booking website ko simple aur professional banaya. Customers ab easily booking aur WhatsApp contact kar pa rahe hain. Website fast hai aur mobile par smoothly kaam karti hai.",
+                                    gradient: "from-blue-500 to-cyan-500"
+                                },
+                                {
+                                    businessName: "Matellix Denting & Painting", 
+                                    ownerName: "Rohit Sharma",
+                                    location: "India",
+                                    projectType: "Automotive Service Website",
+                                    businessIcon: "🔧",
+                                    rating: 5,
+                                    review: "Denting painting website premium feel deti hai aur services clearly dikh rahi hain. Mobile design perfect hai aur customers ko trust milta hai. Overall kaam se kaafi satisfied hoon.",
+                                    gradient: "from-purple-500 to-pink-500"
+                                }
+                            ].map((testimonial, index) => (
+                                <div key={index} className="glass p-6 lg:p-8 rounded-2xl card-hover border border-slate-700/50 hover:border-slate-600/50 transition-all duration-300 group">
+                                    {/* Project Type Badge */}
+                                    <div className="flex items-center justify-between mb-6">
+                                        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r ${testimonial.gradient} bg-opacity-20 border border-current border-opacity-20`}>
+                                            <span className="text-xs font-medium text-white">{testimonial.projectType}</span>
+                                        </div>
+                                        <div className="flex">
+                                            {[...Array(testimonial.rating)].map((_, i) => (
+                                                <svg key={i} className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 24 24">
+                                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                                </svg>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    
+                                    {/* Review Text - Mobile Optimized */}
+                                    <p className="text-slate-300 leading-relaxed text-sm sm:text-base mb-6 lg:mb-8 group-hover:text-slate-200 transition-colors duration-300">
+                                        "{testimonial.review}"
+                                    </p>
+                                    
+                                    {/* Client Info */}
+                                    {/* Client Info - Mobile Optimized */}
+                                    <div className="flex items-center gap-3 lg:gap-4">
+                                        <div className={`w-12 h-12 lg:w-14 lg:h-14 rounded-xl bg-gradient-to-br ${testimonial.gradient} bg-opacity-20 backdrop-blur-sm border border-white/10 flex items-center justify-center text-xl lg:text-2xl group-hover:scale-110 transition-transform duration-300`}>
+                                            {testimonial.businessIcon}
+                                        </div>
+                                        <div>
+                                            <h4 className="text-white font-bold text-base lg:text-lg font-poppins">{testimonial.businessName}</h4>
+                                            <p className="text-slate-400 text-xs lg:text-sm">{testimonial.ownerName}</p>
+                                            <p className="text-slate-500 text-xs">{testimonial.location}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        
+                        {/* Trust Indicator */}
+                        <div className="text-center mt-12">
+                            <div className="inline-flex items-center gap-3 px-6 py-3 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-full">
+                                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span className="text-slate-400 text-sm">Currently available for new projects</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </RevealSection>
+        );
+
+        // Portfolio Section  
+        const PortfolioSection = () => {
+            const [currentlyPlayingVideo, setCurrentlyPlayingVideo] = React.useState(null);
+            
+            return (
+                <RevealSection>
+                    <section id="work" className="py-16 md:py-24 px-4 sm:px-6">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="mb-12 md:mb-20 text-center">
+                                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-poppins mb-4">Recent Projects</h2>
+                                <p className="text-slate-500 text-base md:text-lg">Premium websites that deliver results</p>
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                                {[
+                                {
+                                    title: "SK Tour & Travels",
+                                    category: "Tour & Travel Business Website",
+                                    tech: ["React"],
+                                    gradient: "from-cyan-500 to-blue-600",
+                                    url: "https://sk-tour-travels.onrender.com",
+                                    isRealProject: true,
+                                    image: "https://res.cloudinary.com/dvexzc7nv/image/upload/v1771170541/WhatsApp_Image_2026-02-15_at_6.43.41_PM_new5oa.jpg"
+                                },
+                                {
+                                    title: "Metallix Auto Works",
+                                    category: "Auto Service Business Website",
+                                    tech: ["React 18", "Tailwind CSS", "SEO"],
+                                    gradient: "from-slate-600 to-gray-800",
+                                    url: "https://metallix-auto-works.onrender.com/",
+                                    isRealProject: true,
+                                    image: "https://res.cloudinary.com/dvexzc7nv/image/upload/v1772213977/WhatsApp_Image_2026-02-27_at_11.08.49_PM_1_jt3ezj.jpg"
+                                },
+                                {
+                                    title: "College Management System",
+                                    category: "Full-Stack MERN Application",
+                                    tech: ["React", "Node.js", "MongoDB", "JWT"],
+                                    gradient: "from-indigo-600 to-purple-700",
+                                    url: "https://college-management-system-1-cev6.onrender.com/",
+                                    githubUrl: "https://lnkd.in/gGMc69Wh",
+                                    isRealProject: true,
+                                    image: "https://res.cloudinary.com/dvexzc7nv/image/upload/v1772213971/WhatsApp_Image_2026-02-27_at_11.08.49_PM_vnvoq7.jpg"
+                                },
+                                {
+                                    title: "Learning Management System",
+                                    category: "Frontend Web Application",
+                                    tech: ["React 18", "Vite", "Context API", "CSS3"],
+                                    gradient: "from-emerald-500 to-teal-600",
+                                    url: "https://learning-management-system-sandy-six.vercel.app?_vercel_share=FWiOiy6ysHjApigTeHbrHROAxxtDZgsd",
+                                    githubUrl: "https://github.com/Abhinandan46/Learning-management-system",
+                                    isRealProject: true,
+                                    image: "https://res.cloudinary.com/dvexzc7nv/image/upload/v1772214462/WhatsApp_Image_2026-02-27_at_11.17.23_PM_tsckej.jpg"
+                                },
+                                {
+                                    title: "Personal Portfolio Website",
+                                    category: "Personal Portfolio Website",
+                                    tech: ["HTML", "CSS", "JavaScript"],
+                                    gradient: "from-rose-500 to-pink-600",
+                                    url: "https://small-projects-duo.netlify.app/portfolio",
+                                    isRealProject: true,
+                                    image: "https://repository-images.githubusercontent.com/279903174/e6d970ed-8a4d-42fa-9f16-0b7efc34fb95"
+                                },
+                                {
+                                    title: "Personal Portfolio v3",
+                                    category: "Personal Portfolio Website",
+                                    tech: ["HTML", "CSS", "JavaScript"],
+                                    gradient: "from-violet-500 to-fuchsia-600",
+                                    url: "https://small-projects-duo.netlify.app/portfolio3",
+                                    isRealProject: true,
+                                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFDFdKD9dAOniLZXgDxsLnLbxm7ymPpwbf2A&s"
+                                },
+                                {
+                                    title: "AI Proctoring System",
+                                    category: "Full-Stack Web Application",
+                                    tech: ["React", "Node.js", "MongoDB", "JWT"],
+                                    gradient: "from-blue-600 to-indigo-700",
+                                    isRealProject: true,
+                                    video: "https://res.cloudinary.com/dvexzc7nv/video/upload/v1772208465/linkedin-video_x4td4d.mp4",
+                                    thumbnail: "https://res.cloudinary.com/dvexzc7nv/image/upload/v1772260620/ChatGPT_Image_Feb_28_2026_12_06_03_PM_zmgktf.png"
+                                },
+                                {
+                                    title: "College Management System",
+                                    category: "Full-Stack MERN Application",
+                                    tech: ["React", "Node.js", "Express", "MongoDB"],
+                                    gradient: "from-purple-600 to-pink-700",
+                                    isRealProject: true,
+                                    video: "https://res.cloudinary.com/dvexzc7nv/video/upload/v1772207648/ContentStudio_video_eok9wy.mp4",
+                                    thumbnail : "https://res.cloudinary.com/dvexzc7nv/image/upload/v1772262402/WhatsApp_Image_2026-02-28_at_12.35.44_PM_wroess.jpg"
+                                },
+                                {
+                                    title: "Student Performance Dashboard",
+                                    category: "Full-Stack Web Application",
+                                    tech: ["React", "Node.js", "MongoDB", "Chart.js"],
+                                    gradient: "from-teal-600 to-emerald-700",
+                                    isRealProject: true,
+                                    video: "https://res.cloudinary.com/dvexzc7nv/video/upload/v1772208015/ContentStudio_video_2_t1s8vh.mp4"
+                                },
+                                
+                                {
+                                    title: "College Event Management System",
+                                    category: "Full-Stack Web Application",
+                                    tech: ["React", "Node.js", "MongoDB", "Chart.js"],
+                                    gradient: "from-teal-600 to-emerald-700",
+                                    isRealProject: true,
+                                    video: "https://res.cloudinary.com/dvexzc7nv/video/upload/v1772255729/video_uixokf.mp4" ,
+                                    thumbnail: "https://res.cloudinary.com/dvexzc7nv/image/upload/v1772260750/ChatGPT_Image_Feb_28_2026_12_08_54_PM_m4sr4r.png"
+                                }
+                                                                   
+                               
+        
+                            ].map((project, index) => {
+                                const ProjectCard = React.memo(({ project, index, currentlyPlayingVideo, setCurrentlyPlayingVideo }) => {
+                                    const videoRef = React.useRef(null);
+                                    const isPlaying = currentlyPlayingVideo === index;
+
+                                    const handlePlayClick = React.useCallback(() => {
+                                        // Stop any currently playing video
+                                        if (currentlyPlayingVideo !== null && currentlyPlayingVideo !== index) {
+                                            setCurrentlyPlayingVideo(null);
+                                            setTimeout(() => {
+                                                setCurrentlyPlayingVideo(index);
+                                                if (videoRef.current) {
+                                                    videoRef.current.play().catch(err => console.log('Play error:', err));
+                                                }
+                                            }, 100);
+                                        } else {
+                                            setCurrentlyPlayingVideo(index);
+                                            setTimeout(() => {
+                                                if (videoRef.current) {
+                                                    videoRef.current.play().catch(err => console.log('Play error:', err));
+                                                }
+                                            }, 100);
+                                        }
+                                    }, [index, currentlyPlayingVideo, setCurrentlyPlayingVideo]);
+
+                                    const handleVideoEnd = React.useCallback(() => {
+                                        setCurrentlyPlayingVideo(null);
+                                        if (videoRef.current) {
+                                            videoRef.current.currentTime = 0;
+                                        }
+                                    }, [setCurrentlyPlayingVideo]);
+
+                                    const handleVideoPause = React.useCallback(() => {
+                                        if (videoRef.current && videoRef.current.ended) {
+                                            setCurrentlyPlayingVideo(null);
+                                        }
+                                    }, [setCurrentlyPlayingVideo]);
+
+                                    return (
+                                    <div className={`glass rounded-2xl p-4 sm:p-6 ${project.video ? 'video-card-stable' : 'card-hover card-glow group'}`}>
+                                        <div 
+                                            className={`${project.image || project.video ? 'bg-slate-800' : `bg-gradient-to-br ${project.gradient}`} rounded-xl mb-4 sm:mb-6 relative overflow-hidden`}
+                                            style={{ aspectRatio: '16/9', width: '100%' }}
+                                        >
+                                            {project.image && !project.video && (
+                                                <img 
+                                                    src={project.image} 
+                                                    alt={project.title}
+                                                    className="w-full h-full object-cover"
+                                                    loading="lazy"
+                                                />
+                                            )}
+                                            {project.video && project.thumbnail && (
+                                                <>
+                                                    {!isPlaying && (
+                                                        <div 
+                                                            className="absolute inset-0 cursor-pointer"
+                                                            onClick={handlePlayClick}
+                                                        >
+                                                            <img 
+                                                                src={project.thumbnail} 
+                                                                alt={project.title}
+                                                                className="w-full h-full object-cover"
+                                                                loading="lazy"
+                                                            />
+                                                            <div className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors duration-200">
+                                                                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-blue-600 hover:bg-blue-500 rounded-full flex items-center justify-center transition-colors duration-200 shadow-lg">
+                                                                    <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                                                        <path d="M8 5v14l11-7z"/>
+                                                                    </svg>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                    <video 
+                                                        ref={videoRef}
+                                                        src={project.video}
+                                                        className="w-full h-full object-cover rounded-xl"
+                                                        controls={isPlaying}
+                                                        playsInline
+                                                        preload="none"
+                                                        onEnded={handleVideoEnd}
+                                                        onPause={handleVideoPause}
+                                                        style={{ display: isPlaying ? 'block' : 'none' }}
+                                                    />
+                                                </>
+                                            )}
+                                            {project.video && !project.thumbnail && (
+                                                <video 
+                                                    src={project.video}
+                                                    className="w-full h-full object-cover rounded-xl"
+                                                    controls
+                                                    playsInline
+                                                    preload="none"
+                                                    style={{ display: 'block' }}
+                                                />
+                                            )}
+                                            {!project.video && !project.image && (
+                                                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                                                    <span className="text-white font-bold text-sm sm:text-base">
+                                                        {project.url ? '🔗 Visit Live Site' : 'View Project'}
+                                                    </span>
+                                                </div>
+                                            )}
+                                            {project.isRealProject && (
+                                                <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                                                    Live Project
+                                                </div>
+                                            )}
+                                        </div>
+                                        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 font-poppins leading-tight">{project.title}</h3>
+                                        <p className="text-blue-400 text-sm mb-3 sm:mb-4">{project.category}</p>
+                                        <div className="flex gap-2 flex-wrap mb-4">
+                                            {project.tech.map((tech, i) => (
+                                                <span key={i} className="px-2 sm:px-3 py-1 bg-slate-800 text-slate-300 text-xs rounded-full">
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        {(project.url || project.githubUrl) && (
+                                            <div className="flex gap-2 flex-wrap">
+                                                {project.url && (
+                                                    <a 
+                                                        href={project.url} 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer"
+                                                        className="flex-1 min-w-[120px] px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
+                                                        onClick={(e) => e.stopPropagation()}
+                                                    >
+                                                        🔗 Live Site
+                                                    </a>
+                                                )}
+                                                {project.githubUrl && (
+                                                    <a 
+                                                        href={project.githubUrl} 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer"
+                                                        className="flex-1 min-w-[120px] px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
+                                                        onClick={(e) => e.stopPropagation()}
+                                                    >
+                                                        💻 GitHub
+                                                    </a>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                    );
+                                });
+                                
+                                return (
+                                    <div key={index}>
+                                        <ProjectCard 
+                                            project={project} 
+                                            index={index}
+                                            currentlyPlayingVideo={currentlyPlayingVideo}
+                                            setCurrentlyPlayingVideo={setCurrentlyPlayingVideo}
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
+            </RevealSection>
+            );
+        };
+
+        // Services Section
+        const ServicesSection = () => (
+            <RevealSection>
+                <section id="services" className="py-16 md:py-24 px-4 sm:px-6 bg-slate-900/30">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="mb-12 md:mb-20 text-center">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-poppins mb-4">Services & Starting Pricing</h2>
+                            <p className="text-slate-500 text-base md:text-lg">Transparent pricing. Premium quality. Real results.</p>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                            {[
+                                {
+                                    icon: "🚀",
+                                    title: "High-Converting Landing Pages",
+                                    description: "Modern, responsive landing pages designed to generate leads and sales.",
+                                    price: "Starting from ₹3000",
+                                    color: "blue"
+                                },
+                                {
+                                    icon: "💻", 
+                                    title: "Custom MERN Web Applications",
+                                    description: "Dynamic full-stack applications using MongoDB, Express, React & Node.",
+                                    price: "Starting from ₹8000",
+                                    color: "purple"
+                                },
+                                {
+                                    icon: "🌍",
+                                    title: "Website Deployment & Hosting Setup",
+                                    description: "Complete deployment on Render with domain setup and SSL configuration.",
+                                    price: "Starting from ₹3500",
+                                    color: "cyan"
+                                },
+                                {
+                                    icon: "📱",
+                                    title: "Fully Responsive Business Websites",
+                                    description: "Professional multi-page websites built for trust and brand growth.",
+                                    price: "Starting from ₹5000",
+                                    color: "green"
+                                }
+                            ].map((service, index) => (
+                                <div key={index} className={`glass p-6 lg:p-8 rounded-2xl card-hover card-glow border-b-4 border-${service.color}-500`}>
+                                    <div className="text-3xl lg:text-4xl mb-4 lg:mb-6">{service.icon}</div>
+                                    <h3 className="text-lg lg:text-xl font-bold text-white mb-3 lg:mb-4 font-poppins leading-tight">{service.title}</h3>
+                                    <p className="text-slate-400 leading-relaxed text-sm lg:text-base mb-4">{service.description}</p>
+                                    <div className="border-t border-slate-700/50 pt-4">
+                                        <p className="text-lg lg:text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                                            {service.price}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </RevealSection>
+        );
+
+        // Why Choose Me Section
+        const WhyChooseSection = () => (
+            <RevealSection>
+                <section id="why" className="py-24 px-6 relative">
+                    {/* Background Elements */}
+                    <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+                        <div className="absolute bottom-20 right-4 lg:right-10 w-64 lg:w-80 h-64 lg:h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
+                    </div>
+                    
+                    <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
+                        {/* Left Side - Content - Mobile-First */}
+                        <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
+                            <div>
+                                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 font-poppins leading-tight">
+                                    Why Clients <span className="gradient-text">Work</span> With <span className="gradient-text">Me</span>
+                                </h2>
+                                <p className="text-slate-400 text-base lg:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                                    Clear communication. Clean code. Reliable delivery.
+                                </p>
+                            </div>
+                            
+                            <div className="space-y-4 lg:space-y-6">
+                                {[
+                                    {
+                                        icon: "🚀",
+                                        title: "Fast & Reliable Delivery",
+                                        description: "Your website delivered within 5–7 days with proper testing and deployment."
+                                    },
+                                    {
+                                        icon: "📱",
+                                        title: "Mobile-First & Modern UI", 
+                                        description: "Clean, responsive layouts that look perfect on every device."
+                                    },
+                                    {
+                                        icon: "⚡",
+                                        title: "Performance Focused",
+                                        description: "Optimized for 90+ Lighthouse scores with fast loading times."
+                                    },
+                                    {
+                                        icon: "🤝",
+                                        title: "Post-Launch Support",
+                                        description: "30 days of free support and minor updates after project completion."
+                                    }
+                                ].map((benefit, index) => (
+                                    <div key={index} className="flex gap-4 lg:gap-5 items-start group hover:transform hover:translate-x-2 transition-all duration-300 text-left">
+                                        <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 backdrop-blur-sm border border-blue-500/20 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-all duration-300">
+                                            <span className="text-lg lg:text-xl">{benefit.icon}</span>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-white font-bold text-lg lg:text-xl mb-2 font-inter">{benefit.title}</h4>
+                                            <p className="text-slate-400 leading-relaxed text-sm lg:text-base">{benefit.description}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Right Side - Laptop Mockup - Mobile Hidden/Reduced */}
+                        <div className="flex justify-center lg:justify-end mt-8 lg:mt-0 hidden sm:block">
+                            <div className="relative max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full">
+                                {/* Sample Project Label */}
+                                <div className="absolute -top-6 lg:-top-8 left-1/2 transform -translate-x-1/2 z-20">
+                                    <div className="bg-slate-800/90 backdrop-blur-sm border border-slate-700/50 rounded-full px-3 lg:px-4 py-1.5 lg:py-2">
+                                        <span className="text-slate-300 text-xs lg:text-sm font-medium">Sample Project Preview</span>
+                                    </div>
+                                </div>
+                                
+                                {/* MacBook Style Laptop */}
+                                <div className="relative floating w-full">
+                                    {/* Laptop Base */}
+                                    <div className="bg-gradient-to-b from-slate-200 to-slate-300 rounded-b-2xl sm:rounded-b-3xl px-6 sm:px-8 md:px-12 py-1.5 sm:py-2 shadow-2xl">
+                                        <div className="w-full h-1 sm:h-1.5 bg-gradient-to-r from-slate-400 to-slate-300 rounded-full"></div>
+                                    </div>
+                                    
+                                    {/* Laptop Screen */}
+                                    <div className="bg-slate-800 rounded-t-xl sm:rounded-t-2xl p-1.5 sm:p-2 shadow-2xl">
+                                        <div className="bg-white rounded-lg sm:rounded-xl aspect-[16/10] relative">
+                                            {/* Website Content */}
+                                            <div className="absolute inset-0">
+                                                {/* Header */}
+                                                <div className="bg-white border-b border-slate-200 p-3">
+                                                    <div className="flex items-center justify-between">
+                                                        <div className="flex items-center gap-3">
+                                                            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg"></div>
+                                                            <span className="text-slate-900 font-bold text-sm">TechStartup</span>
+                                                        </div>
+                                                        <div className="flex gap-1">
+                                                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                                                            <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                                                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                {/* Hero Section */}
+                                                <div className="bg-gradient-to-br from-slate-50 to-blue-50 p-4">
+                                                    <div className="text-center space-y-2">
+                                                        <h1 className="text-slate-900 font-bold text-lg leading-tight">
+                                                            Build Your Dream Website
+                                                        </h1>
+                                                        <p className="text-slate-600 text-xs">Modern, Fast & Responsive</p>
+                                                        <div className="bg-blue-600 text-white rounded-lg px-3 py-1.5 text-xs font-medium inline-block">
+                                                            Get Started
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                {/* Performance Metrics */}
+                                                <div className="p-3 space-y-2">
+                                                    <h3 className="text-slate-800 font-semibold text-xs mb-2">Performance Metrics</h3>
+                                                    <div className="grid grid-cols-3 gap-2">
+                                                        <div className="bg-green-50 border border-green-200 rounded-lg p-2 text-center">
+                                                            <div className="text-green-600 text-xs font-bold">Speed</div>
+                                                            <div className="text-green-800 text-sm font-bold">95</div>
+                                                        </div>
+                                                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 text-center">
+                                                            <div className="text-blue-600 text-xs font-bold">Mobile</div>
+                                                            <div className="text-blue-800 text-sm font-bold">92</div>
+                                                        </div>
+                                                        <div className="bg-purple-50 border border-purple-200 rounded-lg p-2 text-center">
+                                                            <div className="text-purple-600 text-xs font-bold">SEO</div>
+                                                            <div className="text-purple-800 text-sm font-bold">98</div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    {/* Features List */}
+                                                    <div className="space-y-1 mt-3">
+                                                        <div className="flex items-center gap-2">
+                                                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                                                            <span className="text-slate-600 text-xs">Responsive Design</span>
+                                                        </div>
+                                                        <div className="flex items-center gap-2">
+                                                            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+                                                            <span className="text-slate-600 text-xs">Fast Loading</span>
+                                                        </div>
+                                                        <div className="flex items-center gap-2">
+                                                            <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
+                                                            <span className="text-slate-600 text-xs">SEO Optimized</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </RevealSection>
+        );
+
+        // CTA Section
+        const CTASection = () => {
+            const [openMiniFAQ, setOpenMiniFAQ] = useState(null);
+            
+            const miniFAQs = [
+                {
+                    question: "How quickly do you respond?",
+                    answer: "I typically respond within 30 minutes during business hours (9 AM - 8 PM IST)."
+                },
+                {
+                    question: "Is the consultation really free?",
+                    answer: "Yes! The initial consultation is completely free with no obligations."
+                },
+                {
+                    question: "What if I'm not satisfied?",
+                    answer: "I offer unlimited revisions and a 100% satisfaction guarantee on all projects."
+                }
+            ];
+            
+            return (
+                <RevealSection>
+                    <section id="contact" className="py-20 md:py-32 px-4 sm:px-6 relative">
+                        {/* Enhanced Background Elements */}
+                        <div className="absolute inset-0 pointer-events-none">
+                            {/* Radial glow behind section */}
+                            <div className="absolute inset-0 bg-gradient-radial from-blue-500/10 via-purple-500/5 to-transparent"></div>
+                            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+                            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 sm:w-64 md:w-80 lg:w-96 h-48 sm:h-64 md:h-80 lg:h-96 bg-gradient-radial from-cyan-500/3 to-transparent rounded-full blur-3xl"></div>
+                        </div>
+                        
+                        <div className="max-w-4xl mx-auto relative z-10">
+                            {/* Top Layer - Headline & Urgency */}
+                            <div className="text-center mb-16 md:mb-20">
+                                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-poppins leading-tight">
+                                    Ready to Start Your <span className="gradient-text">Project?</span>
+                                </h2>
+                                <p className="text-slate-400 text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+                                    Let's turn your idea into a fast, modern, high-converting website.
+                                </p>
+                                
+                                {/* Animated Gradient Divider */}
+                                <div className="relative mb-8">
+                                    <div className="h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent mb-4"></div>
+                                    <div className="absolute inset-0 h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
+                                </div>
+                                
+                                {/* Trust/Urgency Pill Badge */}
+                                <div className="inline-flex items-center gap-3 px-6 py-3 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-full">
+                                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    <span className="text-slate-300 font-medium">Available Now</span>
+                                    <div className="w-px h-4 bg-slate-600"></div>
+                                    <span className="text-slate-400 text-sm">Replies within 30 minutes</span>
+                                </div>
+                            </div>
+                            
+                            {/* Bottom Layer - Contact Cards */}
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                                {/* WhatsApp Card */}
+                                <div className="group relative">
+                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                                    <div className="relative glass p-8 rounded-2xl border border-slate-700/50 hover:border-green-500/30 transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-green-500/10">
+                                        {/* Large Icon */}
+                                        <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                            <svg className="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                            </svg>
+                                        </div>
+                                        
+                                        {/* Content */}
+                                        <h3 className="text-2xl font-bold text-white mb-2 font-poppins">Instant WhatsApp Chat</h3>
+                                        <p className="text-slate-400 mb-6 leading-relaxed">Fastest way to discuss your project</p>
+                                        
+                                        {/* CTA Buttons */}
+                                        <div className="space-y-3">
+                                            <a href="https://wa.me/919317529244" className="block w-full px-6 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:scale-105 transform transition-all shadow-lg hover:shadow-green-500/25 min-h-[48px] flex items-center justify-center group-hover:from-green-400 group-hover:to-emerald-500">
+                                                <span className="flex items-center gap-3">
+                                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                                    </svg>
+                                                    93175 29244
+                                                </span>
+                                            </a>
+                                            <a href="https://wa.me/917876886049" className="block w-full px-6 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:scale-105 transform transition-all shadow-lg hover:shadow-green-500/25 min-h-[48px] flex items-center justify-center group-hover:from-green-400 group-hover:to-emerald-500">
+                                                <span className="flex items-center gap-3">
+                                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                                    </svg>
+                                                    78768 86049
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                {/* Call Card */}
+                                <div className="group relative">
+                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                                    <div className="relative glass p-8 rounded-2xl border border-slate-700/50 hover:border-blue-500/30 transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-blue-500/10">
+                                        {/* Large Icon */}
+                                        <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                            <svg className="w-8 h-8 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                            </svg>
+                                        </div>
+                                        
+                                        {/* Content */}
+                                        <h3 className="text-2xl font-bold text-white mb-2 font-poppins">Schedule a Call</h3>
+                                        <p className="text-slate-400 mb-6 leading-relaxed">Let's discuss requirements in detail</p>
+                                        
+                                        {/* CTA Buttons */}
+                                        <div className="space-y-3">
+                                            <a href="tel:+919317529244" className="block w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:scale-105 transform transition-all shadow-lg hover:shadow-blue-500/25 min-h-[48px] flex items-center justify-center group-hover:from-blue-400 group-hover:to-purple-500">
+                                                <span className="flex items-center gap-3">
+                                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                                    </svg>
+                                                    93175 29244
+                                                </span>
+                                            </a>
+                                            <a href="tel:+917876886049" className="block w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:scale-105 transform transition-all shadow-lg hover:shadow-blue-500/25 min-h-[48px] flex items-center justify-center group-hover:from-blue-400 group-hover:to-purple-500">
+                                                <span className="flex items-center gap-3">
+                                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                                    </svg>
+                                                    78768 86049
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {/* Extra Conversion Elements - Mini Checklist */}
+                            <div className="text-center">
+                                <div className="inline-flex flex-col sm:flex-row items-center gap-6 sm:gap-8 px-8 py-4 bg-slate-900/30 backdrop-blur-sm border border-slate-700/30 rounded-2xl">
+                                    <div className="flex items-center gap-2 text-green-400">
+                                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                                        </svg>
+                                        <span className="text-white font-medium">Free consultation</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-green-400">
+                                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                                        </svg>
+                                        <span className="text-white font-medium">No pressure sales</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-green-400">
+                                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                                        </svg>
+                                        <span className="text-white font-medium">Clear pricing</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </RevealSection>
+            );
+        };
+
+        // Footer
+        const Footer = () => (
+            <RevealSection>
+                <footer className="py-6 px-6 border-t border-slate-800 bg-gradient-to-b from-slate-950 to-slate-900">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 text-center md:text-left">
+                            <div>
+                                <div className="text-xl md:text-2xl font-bold text-white font-poppins mb-2">
+                                    abhi_<span className="text-blue-400">webverse</span>
+                                </div>
+                                <p className="text-slate-500 text-sm">
+                                    Building Digital Presence That Converts.
+                                </p>
+                            </div>
+                            <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
+                                <a href="tel:+919317529244" className="text-slate-400 hover:text-blue-400 text-sm">
+                                    📞 93175 29244
+                                </a>
+                                <a href="https://instagram.com/abhi_webverse" target="_blank" className="text-slate-400 hover:text-pink-400 text-sm">
+                                    📷 @abhi_webverse
+                                </a>
+                            </div>
+                        </div>
+                        <div className="border-t border-slate-800 mt-4 pt-4">
+                            <p className="text-slate-500 text-xs text-center">
+                                &copy; 2026 abhi_webverse. All rights reserved.
+                            </p>
+                        </div>
+                    </div>
+                </footer>
+            </RevealSection>
+        );
+
+        // Main App Component
+        const App = () => {
+            const { isDarkMode, setIsDarkMode } = GlobalEffects();
+
+            return (
+                <div className="App" style={{width: '100%'}}>
+                    <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+                    <HeroSection />
+                    <PortfolioSection />
+                    <ServicesSection />
+                    <ProcessSection />
+                    <WhyChooseSection />
+                    <SocialProofSection />
+                    <CTASection />
+                    <Footer />
+                    <FloatingCTA />
+                </div>
+            );
+        };
+
+        // Render the app
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
